@@ -94,7 +94,7 @@ class HandTest < MiniTest::Test
     hand = Hand.new('8C 8D 8S QS QD')
 
     result = hand.full_house?
-    
+
     assert result
     refute hand.straight?
     refute hand.four_of_a_kind?
@@ -172,5 +172,49 @@ class HandTest < MiniTest::Test
     refute hand.flush?
     refute hand.straight?
     refute hand.three_of_a_kind?
+  end
+
+  def test_other_two_pairs
+    hand = Hand.new('3S 3D 4C 4H 8S')
+
+    result = hand.two_pair?
+
+    assert result
+
+    refute hand.four_of_a_kind?
+    refute hand.flush?
+    refute hand.straight?
+    refute hand.three_of_a_kind?
+  end
+
+  def test_one_pair
+    hand = Hand.new('8S 8D 4C 6H 2S')
+
+    result = hand.one_pair?
+
+    assert result
+    refute hand.flush?
+    refute hand.straight?
+    refute hand.three_of_a_kind?
+    refute hand.two_pair?
+  end
+
+  def test_other_one_pair
+    hand = Hand.new('AS 4C 6H 2S AD')
+
+    result = hand.one_pair?
+
+    assert result
+    refute hand.flush?
+    refute hand.straight?
+    refute hand.three_of_a_kind?
+    refute hand.two_pair?
+  end
+
+  def test_high_ranking
+    hand = Hand.new('6S 5H 2C 7S KD')
+
+    result = hand.ranked_values
+    assert_equal result, ['K', '7', '6', '5', '2']
   end
 end

@@ -35,6 +35,18 @@ class Hand
     group_values.keys.include?(3)
   end
 
+  def two_pair?
+    group_values.keys.include?(2) && group_values[2].count == 4
+  end
+
+  def one_pair?
+    group_values.keys.include?(2) && group_values[2].count == 2
+  end
+
+  def ranked_values
+    values.reverse
+  end
+
   private
 
   def group_values
