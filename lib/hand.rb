@@ -16,7 +16,7 @@ class Hand
   end
 
   def four_of_a_kind?
-    group_suits.keys.include?(4)
+    group_values.keys.include?(4)
   end
 
   def full_house?
@@ -47,11 +47,11 @@ class Hand
     values.reverse
   end
 
-  private
-
   def group_values
     values.group_by { |value| values.count(value) }
   end
+
+  private
 
   def group_suits
     suits.group_by { |value| suits.count(value) }

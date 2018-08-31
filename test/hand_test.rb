@@ -62,7 +62,7 @@ class HandTest < MiniTest::Test
   end
 
   def test_it_has_four_of_a_kind
-    hand = Hand.new('QS 2S TS 8S 4C')
+    hand = Hand.new('8S 8D 8H 8S 4C')
 
     result = hand.four_of_a_kind?
 
@@ -72,7 +72,7 @@ class HandTest < MiniTest::Test
   end
 
   def test_it_has_other_four_of_a_kind
-    hand = Hand.new('KC JC 2C 4C 8S')
+    hand = Hand.new('KC KD KH KS 8S')
 
     result = hand.four_of_a_kind?
 

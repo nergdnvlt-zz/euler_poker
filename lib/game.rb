@@ -22,6 +22,8 @@ class Game
       royal_flush
     elsif straight_flush?
       straight_flush
+    elsif four_of_a_kind?
+      four_of_a_kind
     end
   end
 
@@ -61,6 +63,36 @@ class Game
     elsif player_2_high_card > player_1_high_card
       @winner = @player_2
     end
+  end
+
+  def four_of_a_kind?
+    player_1.four_of_a_kind? || player_2.four_of_a_kind?
+  end
+
+  def four_of_a_kind
+    if player_1.four_of_a_kind? && player_2.four_of_a_kind?
+      break_four_of_a_kind_tie
+    elsif player_1.four_of_a_kind?
+      @winner = @player_1
+    elsif player_2.four_of_a_kind?
+      @winner = @player_2
+    end
+  end
+
+  def break_four_of_a_kind_tie
+    if player_1_4_kind_height > player_2_4_kind_height
+      @winner = @player_1
+    elsif player_2_4_kind_height > player_1_4_kind_height
+      @winner = @player_2
+    end
+  end
+
+  def player_1_4_kind_height
+    player_1.ranks.index(player_1.group_values[4][0])
+  end
+
+  def player_2_4_kind_height
+    player_2.ranks.index(player_2.group_values[4][0])
   end
 
   def player_1_high_card

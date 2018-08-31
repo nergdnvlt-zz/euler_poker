@@ -99,12 +99,39 @@ class GameTest < MiniTest::Test
     assert_equal 'tie', winner
   end
 
-  def test_straight_flush_player_1
-    game = Game.new('9D TD JD QD KD 3C 2C TC 8C AC')
+  def test_four_of_a_kind_player_1
+    game = Game.new('8D 8S 8H 8C KD 3C 3D TC 9D AC')
 
     player_1 = game.player_1
     winner = game.winner
 
     assert_equal player_1, winner
+  end
+
+  def test_four_of_a_kind_player_2
+    game = Game.new('5D 8S 8H 8C KD 3C 3D 3S 3H AC')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_four_of_a_kind__tie_player_1
+    game = Game.new('8D 8S 8H 8C KD 3C 3D 3S 3H AC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_four_of_a_kind__tie_player_2
+    game = Game.new('8D 8S 8H 8C KD 9C 9D 9S 9H AC')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
   end
 end
