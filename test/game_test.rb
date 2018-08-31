@@ -278,4 +278,405 @@ class GameTest < MiniTest::Test
 
     assert_equal player_2, winner
   end
+
+  def test_straight_player_1
+    game = Game.new('2C 3S 5D 4D 6D 2D 3D TH 9C AD')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_straight_player_2
+    game = Game.new('AC 2D 3H 8S 7S 8D 9D TH JC QD')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_straight_tie_player_1
+    game = Game.new('3H 4S 5S 6C 7D 2C 3S 5D 4D 6D')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_straight_tie_player_2
+    game = Game.new('3H 4S 5S 6C 7D 5C 6S 7D 8D 9D')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_straight_tie_no_winner
+    game = Game.new('3H 4S 5S 6C 7D 3C 4C 5D 6D 7S')
+
+    winner = game.winner
+
+    assert_equal 'tie', winner
+  end
+
+  def test_three_of_a_kind_player_1
+    game = Game.new('3H 3C 3D 2C 7D 2D 2C 5D 6H 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_three_of_a_kind_player_1
+    game = Game.new('3H 3C AD 4C 7D 2D 2C 2S 6H 7S')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_three_of_a_kind__tie_player_1
+    game = Game.new('3H 3C 3D 2C 7D 2D 2C 2S 6H 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_three_of_a_kind__tie_player_2
+    game = Game.new('3H 3C 3D 2C 7D 4D 4C 4S 6H 7S')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_two_pair_player_1
+    game = Game.new('3H 3C 4D 4C 7D 2D 2C 5D 6H 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_two_pair_player_2
+    game = Game.new('3H 2C 4D 4C 7D 2D 2C 5D 5H 7S')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_two_pair_tie_player_1
+    game = Game.new('3H 3C 5D 5C 7D 2D 2C 4H 4S 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_two_pair_tie_player_2
+    game = Game.new('3H 3C 5D 5C 7D 2D 2C 6H 6S 7S')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_two_pair_nested_tie_player_1
+    game = Game.new('3H 3C 4D 4C 8D 2D 2C 4H 4S 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_two_pair_nested_tie_player_2
+    game = Game.new('2H 2C 4D 4C 8D 3D 3C 4H 4S 7S')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_two_pair_double_nested_tie_player_1
+    game = Game.new('3H 3C 4D 4C 9D 3D 3S 4H 4S 8S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_two_pair_double_nested_tie_player_2
+    game = Game.new('3H 3C 4D 4C 8D 3D 3S 4H 4S TS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_two_pair_double_nested_tie_no_winner
+    game = Game.new('3H 3C 4D 4C 8D 3D 3S 4H 4S 8S')
+
+    winner = game.winner
+
+    assert_equal 'tie', winner
+  end
+
+  def test_one_pair_player_1
+    game = Game.new('3H 3C 2D 4C 7D 2D 3C 5D 6H 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_one_pair_player_2
+    game = Game.new('3H 8C 2D 4C 7D 2D 5C 5D 6H 7S')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_one_pair_tie_player_1
+    game = Game.new('3H 3C 2D 4C KD 2D 2C 5D 6H 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_one_pair_tie_player_2
+    game = Game.new('3H 3C 2D 4C KD 8D 8C 5D 6H 7S')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_one_pair_first_tie_player_1
+    game = Game.new('3H 3C 2D 4C KD 3D 3C 5D 6H 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_one_pair_first_tie_player_2
+    game = Game.new('3H 3C 2D 4C QD 3D 3C 5D 6H KS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_one_pair_double_tie_player_1
+    game = Game.new('3H 3C 2D QC KD 3D 3C 5D 6H KS')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_one_pair_double_tie_player_2
+    game = Game.new('3H 3C 2D 4C KD 3D 3C 5D QH KS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_one_pair_triple_tie_player_1
+    game = Game.new('3H 3C TD QC KD 3D 3C 5D QH KS')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_one_pair_triple_tie_player_2
+    game = Game.new('3H 3C 2D QC KD 3D 3C 5D QH KS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_one_pair_triple_tie_no_winner
+    game = Game.new('3H 3C 5S QC KD 3D 3C 5D QH KS')
+
+    winner = game.winner
+
+    assert_equal 'tie', winner
+  end
+
+  def test_high_card_player_1
+    game = Game.new('3H 8C 2D 4C KD 2D 3C 5D 6H 7S')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_high_card_player_2
+    game = Game.new('3H 8C 2D 4C QD 2D 3C 5D 6H KS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_high_card_first_tie_player_1
+    game = Game.new('3H 8C 2D JC KD 2D 3C 5D 6H KS')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_high_card_first_tie_player_2
+    game = Game.new('3H 8C 2D TC KD 2D 3C 5D JH KS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_high_card_second_tie_player_1
+    game = Game.new('3H 8C 2D JC KD 2D 3C 5D JH KS')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_high_card_second_tie_player_2
+    game = Game.new('3H 8C 2D JC KD 2D 3C TD JH KS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_high_card_triple_tie_player_1
+    game = Game.new('4H 8C 2D JC KD 2D 3C 8D JH KS')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_high_card_triple_tie_player_2
+    game = Game.new('3H 2C TD JC KD 2D 5C TD JH KS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_high_card_quad_tie_player_1
+    game = Game.new('4H 8C 3D JC KD 2D 4C 8D JH KS')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_high_card_quad_tie_player_2
+    game = Game.new('5H 2C TD JC KD 4D 5C TD JH KS')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_high_card_last_tie_no_winner
+    game = Game.new('4H 8C 3D JC KD 3S 4C 8D JH KS')
+
+    winner = game.winner
+
+    assert_equal 'tie', winner
+  end
+
+  def test_hand_1
+    game = Game.new('5H 5C 6S 7S KD 2C 3S 8S 8D TD')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_hand_2
+    game = Game.new('5D 8C 9S JS AC 2C 5C 7D 8S QH')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_hand_3
+    game = Game.new('2D 9C AS AH AC 3D 6D 7D TD QD')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_hand_4
+    game = Game.new('4D 6S 9H QH QC 3D 6D 7H QD QS')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_hand_5
+    game = Game.new('2H 2D 4C 4D 4S 3C 3D 3S 9S 9D')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
 end
