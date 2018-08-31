@@ -20,6 +20,8 @@ class Game
   def high_score
     if royal_flush?
       royal_flush
+    elsif straight_flush?
+      straight_flush
     end
   end
 
@@ -37,4 +39,35 @@ class Game
     end
   end
 
+  def straight_flush?
+    player_1.straight_flush? | player_2.straight_flush?
+  end
+
+  def straight_flush
+    if player_1.straight_flush? && player_2.straight_flush?
+      break_straight_flush_tie
+    elsif player_1.straight_flush?
+      @winner = @player_1
+    elsif player_2.straight_flush?
+      @winner = @player_2
+    end
+  end
+
+  def break_straight_flush_tie
+    if player_1_high_card == player_2_high_card
+      @winner = 'tie'
+    elsif player_1_high_card > player_2_high_card
+      @winner = @player_1
+    elsif player_2_high_card > player_1_high_card
+      @winner = @player_2
+    end
+  end
+
+  def player_1_high_card
+    @player_1.ranks.index(player_1.cards[-1].value)
+  end
+
+  def player_2_high_card
+    @player_2.ranks.index(player_2.cards[-1].value)
+  end
 end

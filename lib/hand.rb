@@ -1,6 +1,6 @@
 require './lib/card'
 class Hand
-  attr_reader :cards
+  attr_reader :cards, :ranks
 
   def initialize(card_string)
     @ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
@@ -11,7 +11,7 @@ class Hand
     values_match?(8) && same_suit?
   end
 
-  def straight?
+  def straight_flush?
     values_match?(find_index) && same_suit?
   end
 
