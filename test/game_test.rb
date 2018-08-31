@@ -134,4 +134,148 @@ class GameTest < MiniTest::Test
 
     assert_equal player_2, winner
   end
+
+  def test_full_house_player_1
+    game = Game.new('8D 8S 8H KC KD 3C 3D TC 9D AC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_full_house_player_2
+    game = Game.new('8D 8S 6H KC KD 3C 3D 3S AD AC')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_full_house_tie_player_1
+    game = Game.new('8D 8S 8H KC KD 3C 3D 3S AD AC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_full_house_tie_player_2
+    game = Game.new('8D 8S 8H KC KD TC TD TS AD AC')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_flush_player_1
+    game = Game.new('2D 4D 5D TD KD 3C 3D TC 9D AC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_flush_player_2
+    game = Game.new('2C 4S 5D TD KD 2D 3D TD 9D AD')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_tie_flush_player_1
+    game = Game.new('2D 4D 5D TD KD 3C 2C TC 9C 6C')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_tie_flush_player_2
+    game = Game.new('2D 4D 5D TD KD 3C 2C TC 9C AC')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_nested_tie_flush_player_1
+    game = Game.new('2D 4D 5D QD KD 3C 2C 8C TC KC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_nested_tie_flush_player_2
+    game = Game.new('2D 4D 5D 9D KD 3C 2C 8C TC KC')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_double_nested_tie_flush_player_1
+    game = Game.new('2D 4D 8D QD KD 3C 2C 7C TC KC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_double_nested_tie_flush_player_2
+    game = Game.new('2D 4D 8D QD KD 3C 2C TC QC KC')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
+
+  def test_triple_nested_tie_flush_player_1
+    game = Game.new('2D 4D 8D QD KD 3C 2C 8C TC KC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_triple_nested_tie_flush_player_2
+    game = Game.new('2D 4D 8D QD KD 5C 2C 8C TC KC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_quad_nested_tie_flush_player_1
+    game = Game.new('3D 4D 8D QD KD 4C 2C 8C QC KC')
+
+    player_1 = game.player_1
+    winner = game.winner
+
+    assert_equal player_1, winner
+  end
+
+  def test_quad_nested_tie_flush_player_2
+    game = Game.new('2D 4D 8D QD KD 4C 3C 8C QC KC')
+
+    player_2 = game.player_2
+    winner = game.winner
+
+    assert_equal player_2, winner
+  end
 end
