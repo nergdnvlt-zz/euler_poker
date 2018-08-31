@@ -29,9 +29,11 @@ class Game
 
   def royal_flush
     if player_1.royal_flush? && player_2.royal_flush?
-      @winner = nil
+      @winner = 'tie'
     elsif player_1.royal_flush?
       @winner = @player_1
+    elsif player_2.royal_flush?
+      @winner = @player_2
     end
   end
 
