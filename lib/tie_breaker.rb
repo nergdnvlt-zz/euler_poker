@@ -27,7 +27,7 @@ module TieBreaker
 
   def break_flush_tie
     if player_1_high_card == player_2_high_card
-      break_nested_flush_tie_1_deep
+      break_high_card_tie
     elsif player_1_high_card > player_2_high_card
       @winner = @player_1
     elsif player_2_high_card > player_1_high_card
@@ -35,9 +35,9 @@ module TieBreaker
     end
   end
 
-  def break_nested_flush_tie_1_deep
+  def break_high_card_tie
     if player_1_second_high_card == player_2_second_high_card
-      break_double_nested_flush_tie
+      break_high_card_tie_2nd_level_down
     elsif player_1_second_high_card > player_2_second_high_card
       @winner = @player_1
     elsif player_2_second_high_card > player_1_second_high_card
@@ -45,9 +45,9 @@ module TieBreaker
     end
   end
 
-  def break_double_nested_flush_tie
+  def break_high_card_tie_2nd_level_down
     if player_1_third_high_card == player_2_third_high_card
-      break_triple_nested_flush_tie
+      break_high_card_tie_3rd_level_down
     elsif player_1_third_high_card > player_2_third_high_card
       @winner = @player_1
     elsif player_2_third_high_card > player_1_third_high_card
@@ -55,9 +55,9 @@ module TieBreaker
     end
   end
 
-  def break_triple_nested_flush_tie
+  def break_high_card_tie_3rd_level_down
     if player_1_fourth_high_card == player_2_fourth_high_card
-      break_quad_nested_flush_tie
+      break_high_card_tie_4th_level_down
     elsif player_1_fourth_high_card > player_2_fourth_high_card
       @winner = @player_1
     elsif player_2_fourth_high_card > player_1_fourth_high_card
@@ -65,7 +65,7 @@ module TieBreaker
     end
   end
 
-  def break_quad_nested_flush_tie
+  def break_high_card_tie_4th_level_down
     if player_1_lowest_card == player_2_lowest_card
       @winner = 'tie'
     elsif player_1_lowest_card > player_2_lowest_card

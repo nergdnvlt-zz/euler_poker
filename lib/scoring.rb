@@ -61,7 +61,7 @@ module Scoring
 
   def high_card
     if player_1_high_card == player_2_high_card
-      break_nested_flush_tie_1_deep
+      break_high_card_tie
     elsif player_1_high_card > player_2_high_card
       @winner = @player_1
     elsif player_2_high_card > player_1_high_card
