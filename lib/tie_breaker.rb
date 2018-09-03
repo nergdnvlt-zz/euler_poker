@@ -1,5 +1,15 @@
 module TieBreaker
-  def break_straight_flush_tie
+  # def break_straight_flush_tie
+  #   if player_1_high_card == player_2_high_card
+  #     @winner = 'tie'
+  #   elsif player_1_high_card > player_2_high_card
+  #     @winner = @player_1
+  #   elsif player_2_high_card > player_1_high_card
+  #     @winner = @player_2
+  #   end
+  # end
+
+  def break_with_single_high_card
     if player_1_high_card == player_2_high_card
       @winner = 'tie'
     elsif player_1_high_card > player_2_high_card
@@ -75,15 +85,15 @@ module TieBreaker
     end
   end
 
-  def break_straight_tie
-    if player_1_high_card == player_2_high_card
-      @winner = 'tie'
-    elsif player_1_high_card > player_2_high_card
-      @winner = @player_1
-    elsif player_2_high_card > player_1_high_card
-      @winner = @player_2
-    end
-  end
+  # def break_straight_tie
+  #   if player_1_high_card == player_2_high_card
+  #     @winner = 'tie'
+  #   elsif player_1_high_card > player_2_high_card
+  #     @winner = @player_1
+  #   elsif player_2_high_card > player_1_high_card
+  #     @winner = @player_2
+  #   end
+  # end
 
   def break_three_of_a_kind_tie
     if player_1_3_kind_height > player_2_3_kind_height

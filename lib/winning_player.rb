@@ -11,7 +11,7 @@ module WinningPlayer
 
   def straight_flush
     if player_1.straight_flush? && player_2.straight_flush?
-      break_straight_flush_tie
+      break_with_single_high_card
     elsif player_1.straight_flush?
       @winner = @player_1
     elsif player_2.straight_flush?
@@ -51,7 +51,7 @@ module WinningPlayer
 
   def straight
     if player_1.straight? && player_2.straight?
-      break_straight_tie
+      break_with_single_high_card
     elsif player_1.straight?
       @winner = @player_1
     elsif player_2.straight?
